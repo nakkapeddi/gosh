@@ -1,22 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
+	"syscall"
 )
 
 func SignalHandler() {
 	c := make(chan os.Signal)
-	signal.Notify(c)
+	signal.Notify(c, syscall.SIGTERM, syscall.SIGINT)
 	go func() {
 		s := <-c
-		if s == os.Interrupt {
-			fmt.Println("\rCtrl+C caught, exiting!")
-			os.Exit(1)
-		} else {
-			Logger.Debug().Msgf("Signal caught: %s", s)
+		Logger.Debug().Msgf("\rSignal caught: %s", s)
+		switch s {
+		case os.Interrupt:
+			Logger.Warn().Msg("\rCaught interrupt")
+		case syscall.SIGTERM:
+			Logger.Warn().Msg("\rHandling SIGTERM, exiting gracefully...")
+			os.Exit(0)
 		}
-
 	}()
 }
