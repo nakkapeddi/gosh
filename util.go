@@ -13,7 +13,9 @@ func prompt() (string, error) {
 	fmt.Printf("\342\232\241 ")
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
-		userInputCommand = scanner.Text()
+		rawText := scanner.Text()
+		sanitized := strings.TrimLeft(rawText, "\t \n")
+		userInputCommand = sanitized
 	}
 	if len(userInputCommand) == 0 {
 		return "", errors.New("EMPTYMESSAGE")
