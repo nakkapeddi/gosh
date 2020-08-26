@@ -3,4 +3,8 @@
 A minimalistic command shell written in Golang.
 
 ## Building
-make
+* Golang 1.14+ must be installed
+* `go build`
+
+## Demo
+![demo](https://i.imgur.com/gD0YDp0.gif)
