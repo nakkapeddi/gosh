@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"log"
 	"os/exec"
 )
 
@@ -30,11 +29,13 @@ func runCommand(commandString string) {
 
 func execCommandString(cmd string, args []string) {
 	cmder := exec.Command(cmd, args[1:]...)
-	var out bytes.Buffer
+	var out, sterr bytes.Buffer
 	cmder.Stdout = &out
+	cmder.Stderr = &sterr
 	err := cmder.Run()
 	if err != nil {
-		log.Fatal(err)
+		Logger.Error().Err(err).Msg("")
 	}
 	fmt.Printf(out.String())
+	fmt.Printf(sterr.String())
 }
