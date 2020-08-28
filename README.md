@@ -7,4 +7,4 @@ A minimalistic command shell written in Golang.
 * `go build`
 
 ## Demo
-![demo](https://i.imgur.com/gD0YDp0.gif)
+![demo](https://user-images.githubusercontent.com/1656331/91538046-0c90a580-e8cc-11ea-93e5-57eedc433219.gif)
