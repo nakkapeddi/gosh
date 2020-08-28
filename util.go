@@ -10,7 +10,11 @@ import (
 
 func prompt() (string, error) {
 	var userInputCommand string
-	fmt.Printf("\342\232\241 ")
+	var emptySlice []string
+
+	curDir, _ := execCommandString("pwd", emptySlice...)
+	curDirTrimmed := strings.Trim(curDir, "\t \n")
+	fmt.Printf("\342\232\241 [%s] ", curDirTrimmed)
 	stdin := bufio.NewScanner(os.Stdin)
 	scanner := stdin.Scan()
 	if scanner {
