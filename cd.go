@@ -28,8 +28,14 @@ func (cd *changeDirectory) runCommand() {
 	}
 
 	topElem := len(directoryStack) - 1
-	err := os.Chdir(directoryStack[topElem])
+	err := cd.changeDirectory(directoryStack[topElem])
 	if err != nil {
 		Logger.Error().Err(err).Msg("")
 	}
+	pos = len(directoryStack) - 1
+}
+
+func (cd *changeDirectory) changeDirectory(dir string) error {
+	err := os.Chdir(dir)
+	return err
 }

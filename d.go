@@ -5,6 +5,7 @@ type showDirectoryStack struct {
 }
 
 var directoryStack []string
+var pos int
 
 func (d *showDirectoryStack) setCommand(cmd string) {
 	d.cmd = cmd

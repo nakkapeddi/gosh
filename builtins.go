@@ -14,6 +14,8 @@ type builtin struct {
 var builtins = map[string]RunCommandable{
 	"cd": &changeDirectory{},
 	"d":  &showDirectoryStack{},
+	"b":  &walkDirectoryStack{},
+	"a":  &walkDirectoryStack{},
 }
 
 func runBuiltin(commandString string, commandArgs ...string) {
